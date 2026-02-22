@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <meta
+            name="description"
+            content="Arc Trader Helper user manual: how to create offers, manage listings, reactivate completed/deleted offers, and set up alerts on the Arc Raiders marketplace."
+        />
+        <meta
+            name="keywords"
+            content="Arc Trader Helper, Arc Raiders, marketplace, trading, offers, seeds, barter, alerts, Chrome extension, Metaforge"
+        />
+        <meta name="robots" content="index,follow" />
+        <meta name="theme-color" content="#ff8a00" />
+
+        <link rel="icon" href="/icon-32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/icon-16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/icon-48.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/icon-128.png" type="image/png" sizes="128x128" />
+
+        <!-- Open Graph / Social -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Arc Trader Helper — User Manual" />
+        <meta
+            property="og:description"
+            content="Step-by-step guide with screenshots: create offers, manage listings, reactivate offers, and set up alerts for Arc Raiders marketplace trading."
+        />
+        <meta property="og:locale" content="en_US" />
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Arc Trader Helper — User Manual" />
+        <meta
+            name="twitter:description"
+            content="Create offers, manage listings, reactivate offers, and set up alerts — with screenshots."
+        />
+
+        <title>Arc Trader Helper Manual (Arc Raiders Marketplace Offers & Alerts)</title>
+        <style>
+            :root {
+                --bg: #0a0806;
+                --panel: #14100c;
+                --panel2: #1a140f;
+                --text: #f3efe9;
+                --muted: #c9c0b5;
+                --accent: #ff8a00;
+                --accent2: #ffc266;
+                --ok: #ffb000;
+                --warn: #ffd166;
+                --danger: #ff4d6d;
+                --border: rgba(255, 255, 255, 0.1);
+                --shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+                --radius: 18px;
+                --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+                    monospace;
+                --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans",
+                    "Liberation Sans", sans-serif;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                font-family: var(--sans);
+                color: var(--text);
+                background: radial-gradient(1200px 700px at 15% 0%, rgba(255, 138, 0, 0.22), transparent 60%),
+                    radial-gradient(900px 600px at 85% 12%, rgba(255, 194, 102, 0.14), transparent 55%),
+                    linear-gradient(180deg, #050403, var(--bg));
+                line-height: 1.55;
+            }
+            a {
+                color: var(--accent2);
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+            header {
+                padding: 46px 20px 26px;
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+            .badge {
+                display: inline-flex;
+                gap: 10px;
+                align-items: center;
+                padding: 8px 12px;
+                border: 1px solid var(--border);
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.06);
+                color: var(--muted);
+                font-size: 14px;
+            }
+            .badge b {
+                color: var(--text);
+            }
+            h1 {
+                margin: 14px 0 8px;
+                font-size: 44px;
+                letter-spacing: -0.02em;
+                line-height: 1.1;
+            }
+            .sub {
+                margin: 0;
+                max-width: 860px;
+                color: var(--muted);
+                font-size: 17px;
+            }
+            .wrap {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0 20px 70px;
+                display: grid;
+                grid-template-columns: 320px 1fr;
+                gap: 18px;
+            }
+            @media (max-width: 980px) {
+                .wrap {
+                    grid-template-columns: 1fr;
+                }
+                .toc {
+                    position: static !important;
+                }
+                h1 {
+                    font-size: 36px;
+                }
+            }
+            .toc {
+                position: sticky;
+                top: 14px;
+                align-self: start;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                padding: 16px 16px 10px;
+                backdrop-filter: blur(10px);
+            }
+            .toc h3 {
+                margin: 0 0 10px;
+                font-size: 16px;
+                color: var(--text);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .toc .small {
+                font-size: 12px;
+                color: var(--muted);
+            }
+            .toc ul {
+                margin: 0;
+                padding-left: 18px;
+                color: var(--muted);
+            }
+            .toc li {
+                margin: 8px 0;
+            }
+            .toc a {
+                color: var(--muted);
+            }
+            .toc a:hover {
+                color: var(--text);
+            }
+            main {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+            section {
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                padding: 18px;
+                backdrop-filter: blur(10px);
+            }
+            section h2 {
+                margin: 0 0 10px;
+                font-size: 22px;
+                letter-spacing: -0.01em;
+            }
+            .lead {
+                margin: 0 0 14px;
+                color: var(--muted);
+            }
+            .callout {
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                background: linear-gradient(180deg, rgba(255, 138, 0, 0.16), rgba(255, 138, 0, 0.06));
+                padding: 12px 12px;
+                display: flex;
+                gap: 12px;
+                align-items: flex-start;
+                margin: 12px 0 14px;
+            }
+            .callout .dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 999px;
+                margin-top: 7px;
+                background: var(--accent);
+                box-shadow: 0 0 0 6px rgba(124, 92, 255, 0.15);
+                flex: 0 0 auto;
+            }
+            .callout b {
+                color: var(--text);
+            }
+            .grid2 {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            @media (max-width: 780px) {
+                .grid2 {
+                    grid-template-columns: 1fr;
+                }
+            }
+            figure {
+                margin: 0;
+                border: 1px solid var(--border);
+                border-radius: 16px;
+                overflow: hidden;
+                background: rgba(0, 0, 0, 0.22);
+            }
+            figure img {
+                width: 100%;
+                display: block;
+            }
+            figcaption {
+                padding: 10px 12px;
+                color: var(--muted);
+                font-size: 13px;
+                border-top: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.03);
+            }
+            .steps {
+                margin: 0;
+                padding-left: 20px;
+            }
+            .steps li {
+                margin: 8px 0;
+            }
+            .pillrow {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin: 10px 0 6px;
+            }
+            .pill {
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 999px;
+                padding: 6px 10px;
+                color: var(--muted);
+                font-size: 13px;
+            }
+            .pill strong {
+                color: var(--text);
+            }
+            .kbd {
+                font-family: var(--mono);
+                font-size: 12px;
+                padding: 2px 6px;
+                border-radius: 8px;
+                border: 1px solid var(--border);
+                background: rgba(0, 0, 0, 0.35);
+                color: var(--text);
+                white-space: nowrap;
+            }
+            .divider {
+                height: 1px;
+                background: var(--border);
+                margin: 14px 0;
+            }
+            footer {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0 20px 50px;
+                color: var(--muted);
+                font-size: 13px;
+            }
+            .note {
+                border-left: 3px solid var(--accent);
+                padding: 10px 12px;
+                background: rgba(255, 138, 0, 0.1);
+                border-radius: 12px;
+                margin: 10px 0 0;
+            }
+        </style>
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Arc Trader Helper",
+                "applicationCategory": "BrowserApplication",
+                "operatingSystem": "Chrome",
+                "description": "Browser extension that helps manage Arc Raiders marketplace trading with offers and alerts.",
+                "offers": {
+                    "@type": "Offer",
+                    "category": "Free",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Arc Trader Helper (Community)"
+                }
+            }
+        </script>
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "HowTo",
+                "name": "How to use Arc Trader Helper",
+                "description": "Step-by-step guide to creating offers, managing listings, reactivating offers, and setting up alerts in Arc Trader Helper.",
+                "step": [
+                    {
+                        "@type": "HowToStep",
+                        "name": "Create an offer",
+                        "text": "Open Offers and click Create a new listing. Choose type (Seeds/Barter/Offer), select item and quantity, set BUY/SELL and conditions, then click Create."
+                    },
+                    {
+                        "@type": "HowToStep",
+                        "name": "Manage offers",
+                        "text": "Go to Offers > Active. Use Delete, Refresh, or Edit to manage your listings."
+                    },
+                    {
+                        "@type": "HowToStep",
+                        "name": "Reactivate an offer",
+                        "text": "In Offers, switch status to Completed/Canceled/Expired/Deleted. Find the offer and click Reactivate to move it back to Active."
+                    },
+                    {
+                        "@type": "HowToStep",
+                        "name": "Create alerts",
+                        "text": "Go to Alerts, click Add alert, choose type, select item, set conditions (e.g., max seeds), then click Create."
+                    }
+                ]
+            }
+        </script>
+    </head>
+    <body>
+        <a href="#main" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden"
+            >Skip to content</a
+        >
+
+        <header>
+            <div class="badge">
+                <span
+                    style="
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 999px;
+                        background: var(--accent);
+                        box-shadow: 0 0 0 6px rgba(255, 138, 0, 0.16);
+                    "
+                ></span>
+                <b>Arc Trader Helper</b>
+                <span>— User Manual (EN)</span>
+            </div>
+            <h1>Trading in Arc Raiders — faster and easier</h1>
+            <p class="sub">
+                Arc Trader Helper is a browser extension that helps you use the marketplace faster: create offers,
+                manage active listings, and receive notifications when the items you need appear.
+            </p>
+        </header>
+
+        <div class="wrap">
+            <aside class="toc">
+                <h3>Contents <span class="small">quick navigation</span></h3>
+                <ul>
+                    <li><a href="#about">What the extension does</a></li>
+                    <li><a href="#create">1) Creating an offer</a></li>
+                    <li><a href="#manage">2) Managing offers</a></li>
+                    <li><a href="#reactivate">3) Reactivating an offer</a></li>
+                    <li><a href="#alerts">4) Alerts</a></li>
+                    <li><a href="#tips">Tips</a></li>
+                </ul>
+                <div class="divider"></div>
+                <div class="note">
+                    <b>Important:</b> the extension is not affiliated with the game developers and works as a browser
+                    helper tool.
+                </div>
+            </aside>
+
+            <main id="main">
+                <section id="about">
+                    <h2>What Arc Trader Helper does</h2>
+                    <p class="lead">Main use cases:</p>
+                    <div class="pillrow">
+                        <div class="pill"><strong>Offers</strong>: create / edit / refresh / delete</div>
+                        <div class="pill"><strong>Alerts</strong>: item notifications</div>
+                        <div class="pill"><strong>Seeds</strong>: trades for seeds</div>
+                        <div class="pill"><strong>Barter</strong>: item barter</div>
+                    </div>
+
+                    <div class="callout">
+                        <div class="dot"></div>
+                        <div><b>Goal:</b> less manual routine and fewer missed profitable marketplace offers.</div>
+                    </div>
+
+                    <p class="lead" style="margin-bottom: 0">Below is a step-by-step guide with screenshots.</p>
+                </section>
+
+                <section id="create">
+                    <h2>1) Creating an offer</h2>
+                    <p class="lead">Screenshots 1–2 show the process of creating a new listing.</p>
+
+                    <div class="grid2">
+                        <figure>
+                            <img src="/w1.jpg" alt="Creating an offer — step 1" />
+                            <figcaption>
+                                <b>Screenshot 1.</b> Click <span class="kbd">Create a new listing</span>
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <img src="/w2.jpg" alt="Creating an offer — step 2" />
+                            <figcaption><b>Screenshot 2.</b> Choose trade type, item, and settings</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="callout">
+                        <div class="dot"></div>
+                        <div>
+                            <b>Simple flow:</b> first choose the <b>offer type</b>, then the <b>item</b> and trade
+                            conditions.
+                        </div>
+                    </div>
+
+                    <ol class="steps">
+                        <li>Click <span class="kbd">Create a new listing</span>.</li>
+                        <li>
+                            Choose the <b>offer type</b>:
+                            <div class="pillrow">
+                                <div class="pill"><strong>Seeds</strong> — trading for seeds</div>
+                                <div class="pill"><strong>Barter</strong> — item barter</div>
+                                <div class="pill"><strong>Offer</strong> — offer/listing</div>
+                            </div>
+                        </li>
+                        <li>Select the <b>item</b> (what you want to buy/sell) and set the <b>quantity</b>.</li>
+                        <li>Choose the <b>trade type</b>: <b>BUY</b> or <b>SELL</b>.</li>
+                        <li>
+                            Fill in the conditions depending on the type:
+                            <ul>
+                                <li><b>Seeds:</b> set the amount of seeds.</li>
+                                <li><b>Barter:</b> choose the item(s) and their quantities.</li>
+                            </ul>
+                        </li>
+                        <li>Add a <b>description</b> (optional) and click <span class="kbd">Create</span>.</li>
+                    </ol>
+                </section>
+
+                <section id="manage">
+                    <h2>2) Managing offers ( / refresh / edit / delete)</h2>
+                    <p class="lead">
+                        Screenshots 3–4 show where your active offers are and what actions are available.
+                    </p>
+
+                    <div class="grid2">
+                        <figure>
+                            <img src="/w3.jpg" alt="Managing offers — list" />
+                            <figcaption>
+                                <b>Screenshot 3.</b> Go to <span class="kbd">Active</span> to see your active offers
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <img src="/w4.jpg" alt="Managing offers — actions" />
+                            <figcaption>
+                                <b>Screenshot 4.</b> Actions: <span class="kbd">Delete</span>,
+                                <span class="kbd">Refresh</span>, <span class="kbd">Edit</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="pillrow">
+                        <div class="pill"><strong>Delete</strong> — delete the offer</div>
+                        <div class="pill"><strong>Refresh</strong> — republish / bump the offer</div>
+                        <div class="pill"><strong>Edit</strong> — edit the offer details</div>
+                    </div>
+
+                    <ol class="steps">
+                        <li>Open the <b>Offers</b> tab and select status <span class="kbd">Active</span>.</li>
+                        <li>
+                            Find the offer in the list and choose an action:
+                            <ul>
+                                <li><span class="kbd">Delete</span> — deletes the offer.</li>
+                                <li>
+                                    <span class="kbd">Refresh</span> — refreshes (bumps) the offer to make it current.
+                                </li>
+                                <li><span class="kbd">Edit</span> — opens the edit form.</li>
+                            </ul>
+                        </li>
+                    </ol>
+
+                    <div class="divider"></div>
+
+                    <h3 style="margin: 0 0 10px; font-size: 18px">✏ Editing an offer (example: Seeds)</h3>
+                    <p class="lead">
+                        This example uses <b>Seeds</b>. For <b>Barter</b> and <b>Offer</b> the flow is similar — only
+                        the condition fields differ.
+                    </p>
+
+                    <ol class="steps">
+                        <li>Click <span class="kbd">Edit</span>.</li>
+                        <li>Select type: <b>Seeds</b> / <b>Barter</b> / <b>Offer</b>.</li>
+                        <li>
+                            Update the fields:
+                            <ul>
+                                <li>item quantity,</li>
+                                <li>trade type <b>BUY</b> or <b>SELL</b>,</li>
+                                <li>seed amount (for Seeds),</li>
+                                <li>description.</li>
+                            </ul>
+                        </li>
+                        <li>Click <span class="kbd">Update</span>.</li>
+                    </ol>
+                </section>
+
+                <section id="reactivate">
+                    <h2>3) Reactivating an offer (Reactivate)</h2>
+                    <p class="lead">
+                        If an offer was completed, canceled, expired, or deleted, you can restore it using
+                        <span class="kbd">Reactivate</span>. After reactivation, the offer will appear again in
+                        <span class="kbd">Active</span>.
+                    </p>
+
+                    <div class="grid2">
+                        <figure>
+                            <img src="/w7.jpg" alt="Choosing a status for reactivation" />
+                            <figcaption>
+                                <b>Screenshot 7.</b> Select status: <span class="kbd">Completed</span>,
+                                <span class="kbd">Canceled</span>, <span class="kbd">Expired</span>
+                                <span class="kbd">Deleted</span>
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <img src="/w8.jpg" alt="Reactivating the offer" />
+                            <figcaption>
+                                <b>Screenshot 8.</b> Find the offer and click <span class="kbd">Reactivate</span>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <ol class="steps">
+                        <li>Open the <b>Offers</b> tab.</li>
+                        <li>
+                            In the <b>Status</b> dropdown, select one of:
+                            <div class="pillrow">
+                                <div class="pill"><strong>Completed</strong> — completed</div>
+                                <div class="pill"><strong>Canceled</strong> — canceled</div>
+                                <div class="pill"><strong>Expired</strong> — expired</div>
+                                <div class="pill"><strong>Deleted</strong> — deleted</div>
+                            </div>
+                        </li>
+                        <li>Find the offer you want to restore.</li>
+                        <li>Click <span class="kbd">Reactivate</span>.</li>
+                        <li>Check the <span class="kbd">Active</span> — the offer will appear there again.</li>
+                    </ol>
+                </section>
+
+                <section id="alerts">
+                    <h2>4) Alerts — item</h2>
+                    <p class="lead">
+                        Screenshots 5–6 show how to create an alert: when a matching offer appears, you will get a
+                        notification.
+                    </p>
+
+                    <div class="grid2">
+                        <figure>
+                            <img src="/w5.jpg" alt="Alerts — list" />
+                            <figcaption>
+                                <b>Screenshot 5.</b> The <span class="kbd">Alerts</span> tab and the add button
+                            </figcaption>
+                        </figure>
+                        <figure>
+                            <img src="/w6.jpg" alt="Alerts — creation" />
+                            <figcaption><b>Screenshot 6.</b> Creating an alert (example: Seeds)</figcaption>
+                        </figure>
+                    </div>
+
+                    <ol class="steps">
+                        <li>Go to <span class="kbd">Alerts</span>.</li>
+                        <li>Click <span class="kbd">Add alert</span> / <span class="kbd">Create alert</span>.</li>
+                        <li>
+                            Choose tracking type:
+                            <div class="pillrow">
+                                <div class="pill"><strong>Any</strong> — any offers</div>
+                                <div class="pill"><strong>Seeds</strong> — for seeds</div>
+                                <div class="pill"><strong>Barter</strong> — barter</div>
+                                <div class="pill"><strong>Offer</strong> — offers</div>
+                            </div>
+                        </li>
+                        <li>Select the <b>item</b> you want to track.</li>
+                        <li>
+                            Set conditions (example <b>Seeds</b>):
+                            <ul>
+                                <li>item quantity,</li>
+                                <li>set the <b>maximum seeds</b> you are willing to pay.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Click <span class="kbd">Create</span>. When a matching offer appears on the marketplace, you
+                            will receive a notification 🔔
+                        </li>
+                    </ol>
+                </section>
+
+                <section id="tips">
+                    <h2>Tips</h2>
+                    <ul class="steps">
+                        <li>Use <span class="kbd">Refresh</span>, to keep your offers visible and up-to-date.</li>
+                        <li>
+                            For scarce items, create <b>Alerts</b> — this reduces the chance of missing a good price.
+                        </li>
+                        <li>In the offer description, add important conditions.</li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+
+        <footer>
+            <div class="divider"></div>
+            <div><b>Arc Trader Helper — manual</b><br /></div>
+        </footer>
+    </body>
+</html>
